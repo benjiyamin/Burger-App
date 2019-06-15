@@ -1,10 +1,7 @@
 const express = require('express')
 const handlebars = require('express-handlebars')
 
-const burgerRoutes = require('./controllers/burgers_controller')
-
-
-const PORT = process.env.PORT || 3000
+const apiRoutes = require('./app/routes/api_routes')
 
 
 let app = express()
@@ -17,11 +14,16 @@ app.use(express.urlencoded({
 app.use(express.json())
 
 // Template engine
-app.engine('handlebars', handlebars({defaultLayout: 'main'}))
+app.engine('handlebars', handlebars({
+  defaultLayout: 'main'
+}))
 app.set('view engine', 'handlebars')
 
-app.use(burgerRoutes)
+//burgerRoutes(app)
+app.use(apiRoutes)
 
-app.listen(PORT, function() {
+
+const PORT = process.env.PORT || 3000
+app.listen(PORT, function () {
   console.log(`App now listening at PORT ${PORT}`);
 })
