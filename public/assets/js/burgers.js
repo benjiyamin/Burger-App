@@ -1,18 +1,38 @@
 $(document).ready(function () {
-  console.log('hererere')
+
   $('#newBurgerBtn').on('click', event => {
-    console.log('here')
     event.preventDefault()
     let data = {
       name: $('#nameInput').val().trim()
     }
     $.post('/api/burgers', data)
-      .done(response => {
-        console.log(response)
+      .done(() => {
         location.reload()
       })
       .fail(error => {
         throw error
       })
   })
+
+  $(document.body).on('click', '.devour-btn', function () {
+    let burgerId = $(this).data('id')
+    console.log(this)
+    let data = {
+      devoured: true
+    }
+    $.ajax({
+        url: `/api/burgers/${burgerId}`,
+        method: 'PUT',
+        data: data
+      })
+      .done(() => {
+        location.reload()
+      })
+      .fail(error => {
+        throw error
+      })
+
+  })
+
+
 })
