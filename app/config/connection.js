@@ -1,11 +1,13 @@
 const mysql = require('mysql')
 
+const keys = require('../../keys')
+
 
 let connection = mysql.createConnection({
   host: 'localhost',
   port: 3306,
-  user: 'root',
-  password: 'password',
+  user: keys.mysql.username,
+  password: keys.mysql.password,
   database: 'burgers_db'
 })
 
