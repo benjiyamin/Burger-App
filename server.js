@@ -2,6 +2,7 @@ const express = require('express')
 const handlebars = require('express-handlebars')
 
 const apiRoutes = require('./app/routes/api_routes')
+const htmlRoutes = require('./app/routes/html_routes')
 
 
 let app = express()
@@ -21,6 +22,7 @@ app.set('view engine', 'handlebars')
 
 //burgerRoutes(app)
 app.use(apiRoutes)
+app.use(htmlRoutes)
 
 
 const PORT = process.env.PORT || 3000
