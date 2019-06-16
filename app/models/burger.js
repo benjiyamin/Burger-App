@@ -37,6 +37,18 @@ let burger = {
           reject(error)
         })
     })
+  },
+
+  delete: function (condition) {
+    return new Promise(function (resolve, reject) {
+      orm.delete('burgers', condition)
+        .then(result => {
+          resolve(result)
+        })
+        .catch(error => {
+          reject(error)
+        })
+    })
   }
 
 }

@@ -75,6 +75,19 @@ let orm = {
         }
       })
     })
+  },
+
+  delete: function (table, condition) {
+    return new Promise(function (resolve, reject) {
+      let queryString = `DELETE FROM ${table} WHERE ${condition}`
+      connection.query(queryString, function (error, result) {
+        if (error) {
+          reject(error)
+        } else {
+          resolve(result)
+        }
+      })
+    })
   }
 }
 

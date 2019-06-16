@@ -45,4 +45,17 @@ router.put('/api/burgers/:id', function (request, response) {
 })
 
 
+router.delete('/api/burgers/:id', function (request, response) {
+  let condition = `id = ${request.params.id}`
+  burger.delete(condition)
+    .then(() => {
+      //response.json(data)
+      response.status(204).end()
+    })
+    .catch(() => {
+      response.status(500).end()
+    })
+})
+
+
 module.exports = router

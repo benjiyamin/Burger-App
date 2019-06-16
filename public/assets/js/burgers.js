@@ -16,7 +16,6 @@ $(document).ready(function () {
 
   $(document.body).on('click', '.devour-btn', function () {
     let burgerId = $(this).data('id')
-    console.log(this)
     let data = {
       devoured: true
     }
@@ -31,8 +30,19 @@ $(document).ready(function () {
       .fail(error => {
         throw error
       })
-
   })
 
-
+  $(document.body).on('click', '.cleanup-btn', function () {
+    let burgerId = $(this).data('id')
+    $.ajax({
+        url: `/api/burgers/${burgerId}`,
+        method: 'DELETE'
+      })
+      .done(() => {
+        location.reload()
+      })
+      .fail(error => {
+        throw error
+      })
+  })
 })
